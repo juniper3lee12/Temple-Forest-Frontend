@@ -27,14 +27,15 @@
 ---
 
 <!-- prettier-ignore -->
-| **Number** | **Dependencies** | **How to install**                                 |   
-|------------|------------------|----------------------------------------------------| 
-| 1.         | bootstrap        | ```npm i bootstrap@5.3.3```                        |   
-| 2.         | ag-grid-react    | ```npm i --save ag-grid-community ag-grid-react``` |   
-| 3.         | react-bootstrap  | ```npm i react-bootstrap```                        | 
-| 4.         | react-router-dom | ```npm i react-router-dom ```                      |
-| 5.         | reactstrap       | ```npm install reactstrap react react-dom ```      |
-| 6.         | react-toastify   | ```npm install --save react-toastify ```           |
+| **Number** |         **Dependencies**        | **How to install**                                  |   
+|------------|---------------------------------|-----------------------------------------------------| 
+| 1.         | react-navigation                | ```npm install @react-navigation/drawer```          |   
+| 2.         | react-native-gesture-handler    | ```npx expo install react-native-gesture-handler``` |   
+| 3.         | react-native-reanimated         | ```npx expo install react-native-reanimated```      | 
+| 4.         | expo-splash-screen              | ```npx expo install expo-splash-screen ```          |
+| 5.         | expo-constants                  | ```npx expo install expo-constants ```              |
+| 6.         | expo-asset                      | ```npx expo install expo-asset ```                  |
+| 7.         | expo-asset                      | ```npx expo install expo-updates ```                |
 
 # Architecture
 

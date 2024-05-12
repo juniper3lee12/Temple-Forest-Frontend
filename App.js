@@ -1,4 +1,51 @@
-// import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import About from "./screens/About";
+import Login from "./screens/Login";
+import Setting from "./screens/Setting";
+import Splash from "./screens/SplashScreen";
+import Home from "./screens/Home";
+import { ThemeProvider } from "./context/theme";
+
+const Drawer = createDrawerNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <ThemeProvider>
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen
+            name="Home"
+            component={Home}
+            options={{ drawerLabel: "Home" }}
+          />
+          <Drawer.Screen
+            name="SplashScreen"
+            component={Splash}
+            options={{ drawerLabel: "Splashscreen" }}
+          />
+          <Drawer.Screen
+            name="Login"
+            component={Login}
+            options={{ drawerLabel: "Login" }}
+          />
+          <Drawer.Screen
+            name="About"
+            component={About}
+            options={{ drawerLabel: "About" }}
+          />
+          <Drawer.Screen
+            name="Setting"
+            component={Setting}
+            options={{ drawerLabel: "Setting" }}
+          />
+        </Drawer.Navigator>
+      </ThemeProvider>
+    </NavigationContainer>
+  );
+}
+
 // import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import { FontAwesome5 } from "@expo/vector-icons";
 
