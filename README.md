@@ -27,15 +27,16 @@
 ---
 
 <!-- prettier-ignore -->
-| **Number** |         **Dependencies**        | **How to install**                                  |   
-|------------|---------------------------------|-----------------------------------------------------| 
-| 1.         | react-navigation                | ```npm install @react-navigation/drawer```          |   
-| 2.         | react-native-gesture-handler    | ```npx expo install react-native-gesture-handler``` |   
-| 3.         | react-native-reanimated         | ```npx expo install react-native-reanimated```      | 
-| 4.         | expo-splash-screen              | ```npx expo install expo-splash-screen ```          |
-| 5.         | expo-constants                  | ```npx expo install expo-constants ```              |
-| 6.         | expo-asset                      | ```npx expo install expo-asset ```                  |
-| 7.         | expo-asset                      | ```npx expo install expo-updates ```                |
+| **Number** |         **Dependencies**        | **How to install**                                                 |   
+|------------|---------------------------------|--------------------------------------------------------------------| 
+| 1.         | react-navigation                | ```npm install @react-navigation/drawer```                         |   
+| 2.         | react-native-gesture-handler    | ```npx expo install react-native-gesture-handler```                |   
+| 3.         | react-native-reanimated         | ```npx expo install react-native-reanimated```                     | 
+| 4.         | expo-splash-screen              | ```npx expo install expo-splash-screen ```                         |
+| 5.         | expo-constants                  | ```npx expo install expo-constants ```                             |
+| 6.         | expo-asset                      | ```npx expo install expo-asset ```                                 |
+| 7.         | expo-updates                    | ```npx expo install expo-updates ```                               |
+| 8.         | UI Kitten                       | ```npm i @ui-kitten/components @eva-design/eva react-native-svg```
 
 # Architecture
 

@@ -4,45 +4,50 @@ import { NavigationContainer } from "@react-navigation/native";
 import About from "./screens/About";
 import Login from "./screens/Login";
 import Setting from "./screens/Setting";
-import Splash from "./screens/SplashScreen";
+import Meditate from "./screens/Meditate";
 import Home from "./screens/Home";
 import { ThemeProvider } from "./context/theme";
+import { SafeAreaView } from "react-native-safe-area-context";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider, Card } from "@ui-kitten/components";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <ThemeProvider>
-        <Drawer.Navigator initialRouteName="Home">
-          <Drawer.Screen
-            name="Home"
-            component={Home}
-            options={{ drawerLabel: "Home" }}
-          />
-          <Drawer.Screen
-            name="SplashScreen"
-            component={Splash}
-            options={{ drawerLabel: "Splashscreen" }}
-          />
-          <Drawer.Screen
-            name="Login"
-            component={Login}
-            options={{ drawerLabel: "Login" }}
-          />
-          <Drawer.Screen
-            name="About"
-            component={About}
-            options={{ drawerLabel: "About" }}
-          />
-          <Drawer.Screen
-            name="Setting"
-            component={Setting}
-            options={{ drawerLabel: "Setting" }}
-          />
-        </Drawer.Navigator>
-      </ThemeProvider>
-    </NavigationContainer>
+    <ApplicationProvider {...eva} theme={eva.dark}>
+      <NavigationContainer>
+        <ThemeProvider>
+          <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen
+              name="Home"
+              component={Home}
+              options={{ drawerLabel: "Home" }}
+            />
+            <Drawer.Screen
+              name="Meditate"
+              component={Meditate}
+              options={{ drawerLabel: "Meditate" }}
+            />
+            <Drawer.Screen
+              name="Login"
+              component={Login}
+              options={{ drawerLabel: "Login" }}
+            />
+            <Drawer.Screen
+              name="About"
+              component={About}
+              options={{ drawerLabel: "About" }}
+            />
+            <Drawer.Screen
+              name="Setting"
+              component={Setting}
+              options={{ drawerLabel: "Setting" }}
+            />
+          </Drawer.Navigator>
+        </ThemeProvider>
+      </NavigationContainer>
+    </ApplicationProvider>
   );
 }
 
