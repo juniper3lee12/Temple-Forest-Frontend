@@ -1,33 +1,36 @@
-import { View } from 'react-native';
 // import { ThemeProvider } from '../context/theme';
 import { GlobalStyles } from "../styles/global";
-import { Button, Text } from '@ui-kitten/components';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { View, Button, SafeAreaView, Image, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 
-
-export default function MeditateScreen({ navigation: {navigate}}) {
+export default function Btn() {
     const globalStyles = GlobalStyles(); 
 
 
   return (  
+    <View style={styles.formAction}>
+                   <TouchableOpacity onPress={() => { }}>    
+                
+                    <View style={styles.btn}>
+                       <Text style={styles.btnText}>Submit</Text>
+                    </View>
+                   </TouchableOpacity>
+                </View>
     
-  <View>
-    
-    <Button o
-    
-      style={globalStyles.footerControl}
-      size='small'
-      onPress={() => navigate('Meditate')}
-      title="Go to Journal"
-    />  
-
-  </View>  
+  
   
    
   );
 }
+
+const styles = StyleSheet.create({
+   formAction: {
+    marginTop: 4,
+    marginBottom: 16,
+  },
+});
 
 // function ButtonA() {
 //   return (

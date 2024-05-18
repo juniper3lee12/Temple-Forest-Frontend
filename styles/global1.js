@@ -1,23 +1,3 @@
-// import React, {useState} from 'react';
-// import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
-// import * as eva from '@eva-design/eva';
-// import * as material from '@eva-design/material';
-
-import { light } from "@eva-design/eva";
-
-// export default Theme2 () => (
-//   const [theme, setTheme] = useState()
-//   <ApplicationProvider {...eva} theme={eva.light}>
-//     <Layout>
-//       <Button onPress={() => setTheme(material.light)}>
-//         Siwtch to material
-//       </Button>
-//     </Layout>
-//   </ApplicationProvider>
-// );
-
-//set light and dark mode
-
 // import React from "react";
 // import * as eva from "@eva-design/eva";
 // import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";

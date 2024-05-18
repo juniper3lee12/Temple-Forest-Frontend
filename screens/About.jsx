@@ -1,6 +1,7 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { ThemeProvider } from '../context/theme';
 import { GlobalStyles } from "../styles/global";
+import { Layout, Text, Avatar } from '@ui-kitten/components';
 
 
 export default function About() {

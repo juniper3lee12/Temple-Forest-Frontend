@@ -1,14 +1,19 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { GlobalStyles } from "../styles/global";
 import { Layout, Text, Avatar } from '@ui-kitten/components';
 import Dividericon from "../components/Divider";
 import CardAccessories from "../components/Cards";
+import { ThemeProvider, useNavigation } from '@react-navigation/native';
 
 
 export default function Home() {
     const globalStyles = GlobalStyles(); 
+    const navigation = useNavigation();
+
     
     return (
+      <ThemeProvider>
+        <Text>Hello World!</Text>
         <ScrollView style={globalStyles.scrollView}>
 
          <Layout style={globalStyles.container1}>
@@ -37,10 +42,12 @@ export default function Home() {
       style={styles2.layout}
       level='2'
     >
+      <TouchableOpacity style={styles2.button} onPress={() => navigation.navigate('Login')}>
       <Avatar
         size='giant'
-        source={require('../../Front-end/assets/meditate2.png')}
+        source={require('../../Front-end/assets/Login-icon.png')}
       />
+      </TouchableOpacity>
       <Text
         style={globalStyles.title}
         category='h6'
@@ -65,6 +72,7 @@ export default function Home() {
 
   </Layout>
   </ScrollView>
+  </ThemeProvider>
     );
 };
 
@@ -77,5 +85,10 @@ const styles2 = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
   },
 });
