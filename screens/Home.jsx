@@ -13,8 +13,7 @@ export default function Home() {
     
     return (
       <ThemeProvider>
-        <Text>Hello World!</Text>
-        <ScrollView style={globalStyles.scrollView}>
+         <ScrollView style={globalStyles.scrollView}>
 
          <Layout style={globalStyles.container1}>
 

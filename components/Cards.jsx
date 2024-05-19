@@ -4,6 +4,8 @@ import { Button, Card, Layout, Text } from '@ui-kitten/components';
 import { GlobalStyles } from "../styles/global";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { ThemeProvider } from '../context/theme';
+
 
 
 const programs = [
@@ -28,6 +30,7 @@ const Header = (props) => {
   const globalStyles = GlobalStyles();
   return (
     <View style={globalStyles.container2}>
+      <ThemeProvider>
       <TouchableOpacity>
       <Image
       style={styles1.stretch}
@@ -37,12 +40,13 @@ const Header = (props) => {
         resizeMode={'cover'} 
     />
     </TouchableOpacity>
-      <Text category='h6'>
+      <Text style={globalStyles.text} category='h6'>
       {props.name}
     </Text>
-    <Text category='s1'>
+    <Text style={globalStyles.text} category='s1'>
       {props.source}
     </Text>
+    </ThemeProvider>
   </View>
   );
 };

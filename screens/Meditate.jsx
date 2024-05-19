@@ -10,6 +10,7 @@ import Choice from "../components/ViewPager";
 import Status from "../components/CheckBox";
 import Note from "../components/Note";
 import Btn from "../components/Button";
+import Form from "../components/Form";
 
 
 export default function Meditate({ navigation} ) {
@@ -66,20 +67,23 @@ export default function Meditate({ navigation} ) {
     >
       <Status/>
       <Text>
-        Note:
-      </Text>
-      <Note />
+        Put a tick to show that you have achieved the goal today!
+      </Text>    
       
     </Layout>
-
-  </Layout>
-        <Btn/>
+    <Layout>
+      <Form />     
         <Button
       title="Back"
       onPress={() => {
         navigation.goBack();
       }}
     />
+    </Layout>
+        
+
+  </Layout> 
+        
     </ScrollView>
     )
 }
