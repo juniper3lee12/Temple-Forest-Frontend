@@ -40,10 +40,10 @@ const Header = (props) => {
         resizeMode={'cover'} 
     />
     </TouchableOpacity>
-      <Text style={globalStyles.text} category='h6'>
+      <Text style={globalStyles.text} >
       {props.name}
     </Text>
-    <Text style={globalStyles.text} category='s1'>
+    <Text style={globalStyles.text}>
       {props.source}
     </Text>
     </ThemeProvider>
@@ -89,20 +89,22 @@ function Program({ name, info, source, ...rest }) {
   const globalStyles = GlobalStyles();
   console.log(rest);
   return (
-    <>
+    <View>
+      <ThemeProvider>
     <Layout style={globalStyles.topContainer} level='1'>
       <Card style={globalStyles.card} header={() => <Header {...rest} />}>        
-            <Text> About: {name} </Text>
+            <Text style={globalStyles.text}> About: {name} </Text>
       </Card>  
     </Layout>
 
     <Card style={globalStyles.card}>
-      <Text> {info} </Text>
+      <Text style={globalStyles.text}> {info} </Text>
         <Card style={styles1.card} footer={Footer} >
-        <Text> JOURNAL </Text>
+        <Text style={globalStyles.text}> JOURNAL </Text>
       </Card>
-    </Card> 
-  </>
+    </Card>
+    </ThemeProvider> 
+  </View>
   );
 }
 

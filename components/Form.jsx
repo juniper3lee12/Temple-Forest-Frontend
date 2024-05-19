@@ -4,7 +4,9 @@ import { Text, View, TextInput, Button, Alert, StyleSheet } from "react-native";
 import Constants from 'expo-constants';
 import { Layout } from '@ui-kitten/components';
 
+
 export default function Form () {
+    
     const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       inpput1: '',
@@ -27,6 +29,7 @@ export default function Form () {
     return (
         
         <View style={styles.container}>
+            
       <Text style={styles.label}>Enter your experience below?</Text>
       <Controller
         control={control}
@@ -82,6 +85,7 @@ export default function Form () {
         />
       </View>
       </Layout>
+      
 
       
     </View>

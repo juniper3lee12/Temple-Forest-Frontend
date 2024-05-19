@@ -48,7 +48,7 @@ export default function Home() {
       />
       </TouchableOpacity>
       <Text
-        style={globalStyles.title}
+        style={globalStyles.text}
         category='h6'
       >
         Login/Sign-up

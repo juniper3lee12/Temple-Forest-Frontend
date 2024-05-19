@@ -66,9 +66,9 @@ export default function Meditate({ navigation} ) {
       level='1'
     >
       <Status/>
-      <Text>
+      {/* <Text style={globalStyles.text} >
         Put a tick to show that you have achieved the goal today!
-      </Text>    
+      </Text>     */}
       
     </Layout>
     <Layout>
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
 });
 

@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Layout, Text, ViewPager } from '@ui-kitten/components';
+import { ThemeProvider } from '../context/theme';
+import { GlobalStyles } from "../styles/global";
 
 export default function Choice() {
 
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const globalStyles = GlobalStyles();
 
   return (
+    <ThemeProvider>
     <ViewPager
       selectedIndex={selectedIndex}
       onSelect={index => setSelectedIndex(index)}
@@ -15,19 +19,20 @@ export default function Choice() {
         style={styles.tab}
         level='2'
       >
-        <Text category='h5'>
-Vipassana Meditation 2 hours
+        <Text style={globalStyles.text} category='h5'>
+Vipassana 2 hours
         </Text>
       </Layout>
       <Layout
         style={styles.tab}
         level='2'
       >
-        <Text category='h5'>
-Vipassana Meditation 1 hour
+        <Text style={globalStyles.text} category='h5'>
+Vipassana 1 hour
         </Text>
       </Layout>      
     </ViewPager>
+    </ThemeProvider>
   );
 };
 

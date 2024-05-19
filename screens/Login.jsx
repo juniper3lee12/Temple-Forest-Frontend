@@ -5,17 +5,20 @@ import * as React from 'react';
 import { useState } from 'react';
 
 
+
 const Stack = createNativeStackNavigator();
 
 export default function Login({navigation}) {
     
     const globalStyles = GlobalStyles();
     const [form, setForm] = useState({ email: '', password: '',  });
+   
 
 
     return (
         
             <View style ={styles.container}>
+              
                 <View styles={styles.header}>
                     <Image resizeMode="contain" style={styles.headerImg} source={require('../../Front-end/assets/Login-icon.png')} / >
                         <Text style={styles.title}>
@@ -74,7 +77,9 @@ export default function Login({navigation}) {
             </Text>
 
              <Button  title="Back"  onPress={() => { navigation.goBack(); }} />
+             
             </View>
+            
        
         
         
