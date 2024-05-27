@@ -1,89 +1,101 @@
-import { View, Button, SafeAreaView, Image, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Button, SafeAreaView, Image, Text, TextInput, StyleSheet, TouchableOpacity,Alert } from 'react-native';
 import { GlobalStyles } from "../styles/global";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from "expo-constants";
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const Stack = createNativeStackNavigator();
+// const API_URL = "http://localhost:3001";
+const API_URL = Constants?.expoConfig?.hostUri
+  ? Constants.expoConfig.hostUri.split(`:`).shift().concat(`:3001`)
+  : `http://localhost:3001`;
 
-export default function Login({navigation}) {
+export default function Login() {
     
-    const globalStyles = GlobalStyles();
-    const [form, setForm] = useState({ email: '', password: '',  });
-   
+  const globalStyles = GlobalStyles();
+  const [form, setForm] = useState({ email: '', password: '',  });  
+  const navigation = useNavigation();
 
+  async function handleLogin() {
+    
+    const emailPassword = {
+      email: form.email,
+      password: form.password,
+    };  
+    
 
-    return (
+    fetch(`http://${API_URL}/users/login`, {
+      method: "POST",
+      body: JSON.stringify({ 
+            "email":form.email,
+            "password":form.password            
+      }),
+      headers: {
+        "Content-type": "application/json"
+      }
+    })    
+    .then((res) => res.json())
+    .then((res) => { 
+      console.log(res);
+      if(res.status == 'ok') {
+      Alert.alert('Thanks! We have logged you in.');
+      navigation.navigate('Home');
+    }
+    });
+    
+  }
+
+  return (
         
-            <View style ={styles.container}>
-              
-                <View styles={styles.header}>
-                    <Image resizeMode="contain" style={styles.headerImg} source={require('../../Front-end/assets/Login-icon.png')} / >
-                        <Text style={styles.title}>
-                            Login to TempleForest                            
-                        </Text>                      
-
-                        <Text style={styles.subtitle}>
-                         Some text
-                        </Text>                  
-
-                </View>
-
-                <View style={styles.form}>
-                    <View style={styles.input}>
-                        <Text style={styles.inputLabel}>Email address</Text>
-                        <TextInput 
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        clearButtonMode="while-editing"
-                        keyboardType="email-address"
-                        onChangeText={email => setForm({ ...form, email })}
-                        placeholder="john@example.com"
-                        placeholderTextColor="#6b7280"
-                        style={styles.inputControl}
-                        value={form.email} /> 
-                    </View>
-
-                    <View style={styles.input}>
-                       <Text style={styles.inputLabel}>Password</Text>
-                       <TextInput
-                      autoCorrect={false}
-                      clearButtonMode="while-editing"
-                      onChangeText={password => setForm({ ...form, password })}
-                      placeholder="********"
-                      placeholderTextColor="#6b7280"
-                      style={styles.inputControl}
-                      secureTextEntry={true}
-                      value={form.password} />
-                    </View>
-                </View>
-
-                <View style={styles.formAction}>
-                   <TouchableOpacity onPress={() => { }}>    
-                
-                    <View style={styles.btn}>
-                       <Text style={styles.btnText}>Sign in</Text>
-                    </View>
-                   </TouchableOpacity>
-                </View>
-            
-
-            <Text style={globalStyles.text}>
-               {/* o	To enable authentication.
-               o	Username and password are enough. Passwords must be encrypted in the database. */}
-
-            </Text>
-
-             <Button  title="Back"  onPress={() => { navigation.goBack(); }} />
-             
-            </View>
-            
-       
-        
-        
-    );
+    <View style ={styles.container}>          
+      <View styles={styles.header}>
+          <Image resizeMode="contain" style={styles.headerImg} source={require('../../Front-end/assets/Login-icon.png')} / >
+          <Text style={styles.title}>Login to TempleForest</Text>                     
+          <Text style={styles.subtitle}>Please enter your email address and password</Text>               
+      </View>
+      <View style={styles.form}>
+        <View style={styles.input}>
+            <Text style={styles.inputLabel}>Email address</Text>
+                <TextInput 
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  clearButtonMode="while-editing"
+                  keyboardType="email-address"
+                  onChangeText={email => setForm({ ...form, email })}
+                  placeholder="john@example.com"
+                  placeholderTextColor="#6b7280"
+                  style={styles.inputControl}
+                  value={form.email} /> 
+        </View>
+      <View style={styles.input}>
+          <Text style={styles.inputLabel}>Password</Text>
+            <TextInput
+              autoCorrect={false}
+              clearButtonMode="while-editing"
+              onChangeText={password => setForm({ ...form, password })}
+              placeholder="********"
+              placeholderTextColor="#6b7280"
+              style={styles.inputControl}
+              secureTextEntry={true}
+              value={form.password} />
+        </View>
+      </View>
+      <View style={styles.formAction}>
+        <TouchableOpacity onPress={()=>handleLogin()}>    
+         <View style={styles.btn}>
+          <Text style={styles.btnText}>Sign in</Text>
+         </View>                
+        </TouchableOpacity>
+      </View>
+      <Button  title="Back"  onPress={() => { navigation.goBack(); }} /> 
+    </View>     
+  );
 }
 
 

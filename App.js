@@ -18,7 +18,7 @@ export default function App() {
     <ApplicationProvider {...eva} theme={eva.dark}>
       <NavigationContainer>
         <ThemeProvider>
-          <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Navigator initialRouteName="Login">
             <Drawer.Screen
               name="Home"
               component={Home}
