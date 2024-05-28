@@ -20,7 +20,7 @@ export default function Choice() {
         level='2'
       >
         <Text style={globalStyles.text} category='h5'>
-Vipassana 2 hours
+Goal:Vipassana 2 hours
         </Text>
       </Layout>
       <Layout
@@ -28,7 +28,7 @@ Vipassana 2 hours
         level='2'
       >
         <Text style={globalStyles.text} category='h5'>
-Vipassana 1 hour
+Goal:Vipassana 1 hour
         </Text>
       </Layout>      
     </ViewPager>

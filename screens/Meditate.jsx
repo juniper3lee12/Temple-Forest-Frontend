@@ -20,72 +20,41 @@ export default function Meditate({ navigation} ) {
 
     return (
 
-      <ScrollView style={globalStyles.scrollView}>
-      <Layout style={globalStyles.container1}>
+  <ScrollView style={globalStyles.scrollView}>
+    <Layout style={globalStyles.container1}>
 
-    <Layout
-      style={globalStyles.layout}
-      level='4'
-    >
-      <Text>
-        <Dividericon/>
-4
-      </Text>
-    </Layout>
+      <Layout style={globalStyles.layout} level='4' >
+        <Text> 
+          <Dividericon/>
+        </Text>
+      </Layout>
 
-    <Layout
-      style={styles.layout}
-      level='3'
-    >
-      <Text>
-        <CalendarComponent/>
-3
-      </Text>
-    </Layout>
+      <Layout style={styles.layout} level='3' >
+        <Text>
+          <CalendarComponent/>
+        </Text>
+      </Layout>
 
-    <Layout
-      style={styles.layout}
-      level='2'
-    >
-      
-      <Text
-        style={globalStyles.title}
-        category='h6'
-      >
-        <Choice />
-        2
-        
-      </Text>
-      
-      
-    
-    </Layout>
+      <Layout style={styles.layout} level='2'>      
+        <Text style={globalStyles.title} category='h6'>
+          <Choice />     
+        </Text>  
+      </Layout>
 
-    <Layout
-      style={styles.layout}
-      level='1'
-    >
-      <Status/>
-      {/* <Text style={globalStyles.text} >
-        Put a tick to show that you have achieved the goal today!
-      </Text>     */}
-      
-    </Layout>
-    <Layout>
-      <Form />     
-        <Button
-      title="Back"
-      onPress={() => {
-        navigation.goBack();
-      }}
-    />
-    </Layout>
-        
+      <Layout style={styles.layout} level='1'>
+        <Status/>
+        <Text style={globalStyles.text} >
+          Put a tick if you have achieved the goal.        
+        </Text> 
+      </Layout>
 
-  </Layout> 
-        
-    </ScrollView>
-    )
+      <Layout>        
+          <Form />     
+          <Button title="Back" onPress={() => {navigation.goBack();}}  />       
+      </Layout>       
+    </Layout> 
+  </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({

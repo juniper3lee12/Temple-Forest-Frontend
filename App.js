@@ -5,6 +5,7 @@ import About from "./screens/About";
 import Login from "./screens/Login";
 import Setting from "./screens/Setting";
 import Meditate from "./screens/Meditate";
+import MySpace from "./screens/MySpace";
 import Home from "./screens/Home";
 import { ThemeProvider } from "./context/theme";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -18,7 +19,7 @@ export default function App() {
     <ApplicationProvider {...eva} theme={eva.dark}>
       <NavigationContainer>
         <ThemeProvider>
-          <Drawer.Navigator initialRouteName="Login">
+          <Drawer.Navigator initialRouteName="My Space">
             <Drawer.Screen
               name="Home"
               component={Home}
@@ -28,6 +29,11 @@ export default function App() {
               name="Meditate"
               component={Meditate}
               options={{ drawerLabel: "Meditate" }}
+            />
+            <Drawer.Screen
+              name="My Space"
+              component={MySpace}
+              options={{ drawerLabel: "MySpace" }}
             />
             <Drawer.Screen
               name="Login"

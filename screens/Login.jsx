@@ -45,7 +45,9 @@ export default function Login() {
       console.log(res);
       if(res.status == 'ok') {
       Alert.alert('Thanks! We have logged you in.');
-      navigation.navigate('Home');
+      AsyncStorage.setItem('token', res.token);
+      AsyncStorage.setItem('isLoggrdIn', JSON.stringify(true));
+      navigation.navigate('My Space');
     }
     });
     
