@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
+
 const Stack = createNativeStackNavigator();
 // const API_URL = "http://localhost:3001";
 const API_URL = Constants?.expoConfig?.hostUri
@@ -21,13 +22,14 @@ export default function Login() {
   const globalStyles = GlobalStyles();
   const [form, setForm] = useState({ email: '', password: '',  });  
   const navigation = useNavigation();
+  
 
   async function handleLogin() {
     
-    const emailPassword = {
-      email: form.email,
-      password: form.password,
-    };  
+    // const emailPassword = {
+    //   email: form.email,
+    //   password: form.password,
+    // };  
     
 
     fetch(`http://${API_URL}/users/login`, {
@@ -47,7 +49,7 @@ export default function Login() {
       Alert.alert('Thanks! We have logged you in.');
       AsyncStorage.setItem('token', res.token);
       AsyncStorage.setItem('isLoggrdIn', JSON.stringify(true));
-      navigation.navigate('My Space');
+      navigation.navigate('My Space', {token: res.token});
     }
     });
     

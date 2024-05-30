@@ -6,6 +6,7 @@ import Login from "./screens/Login";
 import Setting from "./screens/Setting";
 import Meditate from "./screens/Meditate";
 import MySpace from "./screens/MySpace";
+import Update from "./screens/Update";
 import Home from "./screens/Home";
 import { ThemeProvider } from "./context/theme";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,7 +20,7 @@ export default function App() {
     <ApplicationProvider {...eva} theme={eva.dark}>
       <NavigationContainer>
         <ThemeProvider>
-          <Drawer.Navigator initialRouteName="My Space">
+          <Drawer.Navigator initialRouteName="Update">
             <Drawer.Screen
               name="Home"
               component={Home}
@@ -34,6 +35,11 @@ export default function App() {
               name="My Space"
               component={MySpace}
               options={{ drawerLabel: "MySpace" }}
+            />
+            <Drawer.Screen
+              name="Update"
+              component={Update}
+              options={{ drawerLabel: "Update" }}
             />
             <Drawer.Screen
               name="Login"

@@ -7,11 +7,9 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute} from '@react-navigation/native';
 
-const data = new Array(8).fill({
-  title: 'Item',
-});
+
 
 
 const API_URL = Constants?.expoConfig?.hostUri
@@ -21,8 +19,31 @@ const API_URL = Constants?.expoConfig?.hostUri
 export default function MySpace() { 
 
     const [notes, setNotes] = useState([]); 
-
     const globalStyles = GlobalStyles();
+    const navigation = useNavigation();
+    const route = useRoute();    
+    
+    // async function getToken (){
+    //     const authParameters = {
+    //         method:"POST",
+    //         headers: {
+    //             "Content-Type": "application/x-www-form-urlencoded",
+    //         },
+    //         body:JSON.stringify({
+    //             "email":route.params.email,
+    //             "password":route.params.password,
+    //         }),
+    //     };
+
+    //     const res = await fetch(
+    //         `http://${API_URL}/users/login`, authParameters
+    //     );
+    //     const resJson =await res.json();
+    //     console.log(resJson);
+    //     console.log("Response is " + resJson);
+    //     const token = resJson["access_token"];
+    //     return token;
+    // }
     
 
     const getData = async () => {
@@ -32,39 +53,60 @@ export default function MySpace() {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log('Parsed JSON data:', data);
+            //console.log('Parsed JSON data:', data);
             setNotes(data.notes);
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
-    const deleteData = async () => {
-        
-    }
+    const handleDelete = async (id) => {
+        // const token = await getToken();
+        const authorization = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + route.params.token,
+            },
+        };
+        try{
+            const del = await fetch(`http://${API_URL}/users/delete/` + id,authorization);
+            if (!del.ok){
+                throw new Error('Network response was not ok');
+            }
+            const data = await del.json();
+            // Update the state to remove the deleted note
+            setNotes(notes.filter(note => note.id !== id));
 
+        }catch (error){
+            console.error('Error:', error);
+        }
+    }
+    
     useEffect(() => {
         getData();
     }, []);
 
+   
+
     
-    const Footer = () => {
-        const globalStyles = GlobalStyles();
-        const navigation = useNavigation();
+    const Footer = ({note}) => {
+        // const globalStyles = GlobalStyles();
+        // const navigation = useNavigation();
 
         return (
             <View style={styles.footerContainer}>
                 <Button 
                 title= "Edit Note"
-                onPress={() => navigation.navigate('Meditate')}
+                onPress={() => navigation.navigate('Update', {id: note.id, token: route.params.token})}                
                 style={styles.footerControl}
                 size='small'
                 status='success'>
                     Add comment
                 </Button>
                 <Button 
-                title= "Edit Note"
-                onPress={() => navigation.navigate('Meditate')}
+                title= "Delete Note"
+                onPress={()=>handleDelete(note.id)}
                 style={styles.footerControl}
                 size='small'
                 status='primary'>
@@ -93,7 +135,7 @@ export default function MySpace() {
             
             <ScrollView style={styles.container}>
                 {notes.map((note) => (
-                   <Card style={styles.item} status="basic"  footer={Footer} header={() => <Header note={note} />}  >
+                   <Card key={note.id} style={styles.item} status="basic"  footer={() => <Footer note={note}/>} header={() => <Header note={note} />}  >
                        <Text style={globalStyles.text}>Date: {note.date}</Text>
                        <Text style={globalStyles.text}>Experience: {note.input1}</Text>
                        <Text style={globalStyles.text}>Improvement: {note.input2}</Text>           
