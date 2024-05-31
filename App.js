@@ -1,3 +1,4 @@
+import React from "react";
 import "react-native-gesture-handler";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,55 +12,69 @@ import Home from "./screens/Home";
 import { ThemeProvider } from "./context/theme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as eva from "@eva-design/eva";
-import { ApplicationProvider, Card } from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { ApplicationProvider, Card, IconRegistry } from "@ui-kitten/components";
+import { ThemeContext } from "../Front-end/context/theme-context";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const [theme, setTheme] = React.useState("light");
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+  };
+
   return (
-    <ApplicationProvider {...eva} theme={eva.dark}>
-      <NavigationContainer>
-        <ThemeProvider>
-          <Drawer.Navigator initialRouteName="About">
-            <Drawer.Screen
-              name="Home"
-              component={Home}
-              options={{ drawerLabel: "Home" }}
-            />
-            <Drawer.Screen
-              name="Meditate"
-              component={Meditate}
-              options={{ drawerLabel: "Meditate" }}
-            />
-            <Drawer.Screen
-              name="My Space"
-              component={MySpace}
-              options={{ drawerLabel: "MySpace" }}
-            />
-            <Drawer.Screen
-              name="Update"
-              component={Update}
-              options={{ drawerLabel: "Update" }}
-            />
-            <Drawer.Screen
-              name="Login"
-              component={Login}
-              options={{ drawerLabel: "Login" }}
-            />
-            <Drawer.Screen
-              name="About"
-              component={About}
-              options={{ drawerLabel: "About" }}
-            />
-            <Drawer.Screen
-              name="Setting"
-              component={Setting}
-              options={{ drawerLabel: "Setting" }}
-            />
-          </Drawer.Navigator>
-        </ThemeProvider>
-      </NavigationContainer>
-    </ApplicationProvider>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ApplicationProvider {...eva} theme={eva[theme]}>
+          <NavigationContainer>
+            <ThemeProvider>
+              <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen
+                  name="Home"
+                  component={Home}
+                  options={{ drawerLabel: "Home" }}
+                />
+                <Drawer.Screen
+                  name="Meditate"
+                  component={Meditate}
+                  options={{ drawerLabel: "Meditate" }}
+                />
+                <Drawer.Screen
+                  name="My Space"
+                  component={MySpace}
+                  options={{ drawerLabel: "MySpace" }}
+                />
+                <Drawer.Screen
+                  name="Update"
+                  component={Update}
+                  options={{ drawerLabel: "Update" }}
+                />
+                <Drawer.Screen
+                  name="Login"
+                  component={Login}
+                  options={{ drawerLabel: "Login" }}
+                />
+                <Drawer.Screen
+                  name="About"
+                  component={About}
+                  options={{ drawerLabel: "About" }}
+                />
+                <Drawer.Screen
+                  name="Setting"
+                  component={Setting}
+                  options={{ drawerLabel: "Setting" }}
+                />
+              </Drawer.Navigator>
+            </ThemeProvider>
+          </NavigationContainer>
+        </ApplicationProvider>
+      </ThemeContext.Provider>
+    </>
   );
 }
 

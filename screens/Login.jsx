@@ -60,12 +60,12 @@ export default function Login() {
     <View style ={styles.container}>          
       <View styles={styles.header}>
           <Image resizeMode="contain" style={styles.headerImg} source={require('../../Front-end/assets/Login-icon.png')} / >
-          <Text style={styles.title}>Login to TempleForest</Text>                     
-          <Text style={styles.subtitle}>Please enter your email address and password</Text>               
+          <Text style={[styles.title,globalStyles.text]}>Login to TempleForest</Text>                     
+          <Text style={[styles.subtitle, globalStyles.text]}>Please enter your email address and password</Text>               
       </View>
       <View style={styles.form}>
         <View style={styles.input}>
-            <Text style={styles.inputLabel}>Email address</Text>
+            <Text style={[styles.inputLabel,globalStyles.text]}>Email address</Text>
                 <TextInput 
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -78,7 +78,7 @@ export default function Login() {
                   value={form.email} /> 
         </View>
       <View style={styles.input}>
-          <Text style={styles.inputLabel}>Password</Text>
+          <Text style={[styles.inputLabel,globalStyles.text]}>Password</Text>
             <TextInput
               autoCorrect={false}
               clearButtonMode="while-editing"

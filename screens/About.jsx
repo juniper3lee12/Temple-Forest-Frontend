@@ -8,6 +8,7 @@ import Dividericon from "../components/Divider";
 
 
 
+
 const data =  [
   { title: "eva-design/eva", description: "2.2.0" },
   { title: "react-native-async-storage/async-storage", description: "1.23.1" },
@@ -43,21 +44,21 @@ export default function About() {
     return (
         <View>
             <ThemeProvider>
-                <Layout>
-                    <Dividericon/>
+                <Layout>                    
+                    <Dividericon/>                  
                 </Layout>
                 <Layout>
                     <Card>
-                    <Text>                   
-                        
+                    <Text style={globalStyles.text}>                
                       Benefit from the wisdom and experience of our meditation masters. 
                       Learn new techniques, refine your practice, and overcome challenges with expert advice. 
-                      Our goal is to help you achieve a more profound and effective meditation experience.  
+                      Our goal is to help you achieve a more profound and effective meditation experience
+                      .  
                     </Text>
                 </Card>
                 </Layout>
                 <Layout>
-                    <Text style={styles.headline} category='h5'>
+                    <Text style={[styles.headline,globalStyles.text]} category='h5'> 
                         Open source license
                     </Text>
                 </Layout>

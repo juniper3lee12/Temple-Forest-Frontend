@@ -12,6 +12,7 @@ import { useNavigation, useRoute} from '@react-navigation/native';
 
 
 
+
 const API_URL = Constants?.expoConfig?.hostUri
   ? Constants.expoConfig.hostUri.split(`:`).shift().concat(`:3001`)
   : `http://localhost:3001`;
@@ -120,7 +121,7 @@ export default function MySpace() {
 
         return(
             <View>
-            <Text category='h6'>                
+            <Text style={globalStyles.text} category='h6'>                
                Note: {note.id}
             </Text>
 
