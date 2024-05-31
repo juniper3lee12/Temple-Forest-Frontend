@@ -3,6 +3,8 @@ import { StyleSheet, View, TextInput } from "react-native"
 import { Input, Text,Card, InputProps, Button } from "@ui-kitten/components"
 import { useNavigation, useRoute} from '@react-navigation/native';
 import Constants from "expo-constants";
+ 
+
 
 const API_URL = Constants?.expoConfig?.hostUri
   ? Constants.expoConfig.hostUri.split(`:`).shift().concat(`:3001`)
@@ -16,6 +18,7 @@ export default function Update() {
   const route = useRoute();
   const [form, setForm] = useState({ message1: '', message2:  ''}); 
   const [text, setText] = useState('');
+  const navigation = useNavigation();
   // const [notes, setNotes] = useState([]); 
   // const multilineInputState = useInputState();
 
@@ -35,9 +38,10 @@ export default function Update() {
                 throw new Error('Network response was not ok');
             }
             const data = await update.json();
-            console.log(route.params.token)
-            console.log(data);
-            console.log("Response is " + data);
+            navigation.navigate('My Space');
+            // console.log(route.params.token)
+            // console.log(data);
+            // console.log("Response is " + data);
             // Update the state to remove the deleted note
             // setNotes(notes.filter(note => note.id !== id));
 

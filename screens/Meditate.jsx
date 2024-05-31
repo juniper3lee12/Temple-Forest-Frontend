@@ -1,7 +1,7 @@
 import { GlobalStyles } from "../styles/global";
 import * as React from 'react';
 import { useState, useCallback } from 'react';
-import { View, StyleSheet, ScrollView, TextInput} from 'react-native';
+import { View, StyleSheet, ScrollView, TextInput, Alert} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Layout, Text, Avatar, Card } from '@ui-kitten/components';
@@ -27,7 +27,7 @@ export default function Meditate({ navigation} ) {
     const [text, setText] = useState('');
 
     const handleDateChange = useCallback ((selectedDate) => { 
-      console.log('Updating formData with selected date:', selectedDate);
+      // console.log('Updating formData with selected date:', selectedDate);
 
       //Extract the date part from the datetime string
       let dateObj = new Date(selectedDate);
@@ -43,17 +43,17 @@ export default function Meditate({ navigation} ) {
     },[]);
 
     const handleStatusChange = useCallback ((status) => { 
-      console.log('Updating formData with status:', status);
+      // console.log('Updating formData with status:', status);
       setFormdata(prevState => ({
         ...prevState,
-        goal: Number(status ? 1 : 0),
+        goal: Number(status ? 1 : 0), //Need to be integer
       }));
     },[]);
 
-    //goal: +(status ? 1 : 0), // Ensure it's an integer
+     
 
     async function handleSubmit () {
-      console.log('Form data to be submitted:', formData);
+      // console.log('Form data to be submitted:', formData);
       fetch(`http://${API_URL}/meditate`, {
         method:"POST",
         body: JSON.stringify({
@@ -69,7 +69,10 @@ export default function Meditate({ navigation} ) {
       })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        if(res.status =='ok'){
+          Alert.alert('Thanks. Your post will be reviewed by our master!');
+        }
       })
     }
 
@@ -116,7 +119,7 @@ export default function Meditate({ navigation} ) {
                        <TextInput style={{height: 100}} placeholder="How can you make it better next time?" placeholderTextColor="#FFF" onChangeText={input2 => setFormdata({ ...formData, input2 })} defaultValue={text} />                        
                    </Card>        
                  </View>       
-                <View style={styles.submitButtonSection}>
+                <View style={styles.container}>
                 <Button title="Submit" onPress={handleSubmit} style={styles.button} size="small" status="success">Post experience</Button>                    
                 <Button title="Back" style={styles.button} size="small" status="success" onPress={() => {navigation.goBack();}} >Back</Button>    
                 </View>  
@@ -131,6 +134,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   layout: {
     flex: 1,
