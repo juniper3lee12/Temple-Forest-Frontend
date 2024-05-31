@@ -11,25 +11,12 @@ export default function Choice() {
 
   return (
     <ThemeProvider>
-    <ViewPager
-      selectedIndex={selectedIndex}
-      onSelect={index => setSelectedIndex(index)}
-    >
-      <Layout
-        style={styles.tab}
-        level='2'
-      >
-        <Text style={globalStyles.text} category='h5'>
-Goal:Vipassana 2 hours
-        </Text>
+    <ViewPager selectedIndex={selectedIndex} onSelect={index => setSelectedIndex(index)}>
+      <Layout style={styles.tab} level='2'>
+        <Text style={globalStyles.text} category='h5'>Goal:Vipassana 2 hours</Text>
       </Layout>
-      <Layout
-        style={styles.tab}
-        level='2'
-      >
-        <Text style={globalStyles.text} category='h5'>
-Goal:Vipassana 1 hour
-        </Text>
+      <Layout style={styles.tab} level='2' >
+        <Text style={globalStyles.text} category='h5'>Goal:Vipassana 1 hour</Text>
       </Layout>      
     </ViewPager>
     </ThemeProvider>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { ThemeProvider } from '../context/theme';
 import { GlobalStyles } from "../styles/global";
@@ -6,9 +6,14 @@ import { Layout, Text, Avatar,Calendar, Datepicker } from '@ui-kitten/components
 
 
 
-export default function CalendarComponent() {
+export default function CalendarComponent({onDataChange}) {
     const globalStyles = GlobalStyles();
     const [date, setDate] = useState(new Date());
+    useEffect(() => {if(onDataChange) {
+      // console.log('Selected date:', date);
+      onDataChange(date);
+    }
+  }, [date, onDataChange]);    
 
     return ( 
       <View>
@@ -19,9 +24,7 @@ export default function CalendarComponent() {
                 </ImageBackground>
                 <Datepicker date={date} onSelect={nextDate => setDate(nextDate)} />
             </Layout>
-
-            </ThemeProvider>
-        
+            </ThemeProvider>        
       </View>      
       
             

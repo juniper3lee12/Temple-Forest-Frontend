@@ -20,7 +20,7 @@ export default function App() {
     <ApplicationProvider {...eva} theme={eva.dark}>
       <NavigationContainer>
         <ThemeProvider>
-          <Drawer.Navigator initialRouteName="Update">
+          <Drawer.Navigator initialRouteName="Meditate">
             <Drawer.Screen
               name="Home"
               component={Home}

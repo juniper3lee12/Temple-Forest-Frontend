@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { StyleSheet, View, TextInput } from "react-native"
-import { Input, Text,Card, Button, InputProps } from "@ui-kitten/components"
+import { Input, Text,Card, InputProps, Button } from "@ui-kitten/components"
 import { useNavigation, useRoute} from '@react-navigation/native';
 import Constants from "expo-constants";
 
@@ -15,7 +15,7 @@ export default function Update() {
   
   const route = useRoute();
   const [form, setForm] = useState({ message1: '', message2:  ''}); 
-   const [text, setText] = useState('');
+  const [text, setText] = useState('');
   // const [notes, setNotes] = useState([]); 
   // const multilineInputState = useInputState();
 

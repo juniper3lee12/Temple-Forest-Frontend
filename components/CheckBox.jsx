@@ -1,15 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { CheckBox } from '@ui-kitten/components';
 
 
-export default function Status () {
+export default function Status ({onStatusChange}) {
 
   const [checked, setChecked] = useState(false);
+  useEffect(()=>{
+    // console.log("useEffect triggered");
+    // console.log('Checked status in useEffect :', checked);
+    if(onStatusChange){
+      
+      onStatusChange(checked ? 1 : 0);
+    }
+  },[checked,onStatusChange]);
+
+  
   
 
   return (
-    <CheckBox
-      
+    <CheckBox 
       checked={checked}
       onChange={nextChecked => setChecked(nextChecked)}
     >

@@ -80,7 +80,7 @@ export default function Form () {
         <Button
           style={styles.buttonInner}
           color
-          title="Record Your Journal"
+          title="Submit form"
           onPress={handleSubmit(onSubmit)}
         />
       </View>
