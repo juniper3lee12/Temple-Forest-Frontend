@@ -36,7 +36,7 @@ More than 20 dependencies have been installed in this application. The following
 
 # Architecture
 
-![alt text](https://im.ge/i/KhGsEx)
+![alt text](../Front-end/assets/Image.png)
 
 ## Components
 
