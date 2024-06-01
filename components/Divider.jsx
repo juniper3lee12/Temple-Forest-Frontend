@@ -1,27 +1,7 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Avatar, Divider, Text } from '@ui-kitten/components';
 import { GlobalStyles } from "../styles/global";
 import { ThemeProvider } from '../context/theme';
-
-
-
-const quotes = [
-  {
-    key: "1",
-    name: "HomeQuote",
-    info: "When it hurts observe, life is trying to teach you something.",
-    
-    
-  },
-  {
-    key: "2",
-    name: "MeditateQuote",
-    info: "Suffering is not holding you, you are holding suffering.",
-    
-  },
-  
-];
-
 
 
 
@@ -30,7 +10,7 @@ export default function Dividericon (){
 
     return  (
         <>
-    <View style={globalStyles.details}>
+    <View>
       <ThemeProvider>
       <Avatar
         size='giant'
@@ -44,11 +24,13 @@ export default function Dividericon (){
       </Text>
       </ThemeProvider>
     </View>
-    <Divider />
-    
+    <Divider />    
   </>
     )
     
 } 
 
 
+
+  
+   

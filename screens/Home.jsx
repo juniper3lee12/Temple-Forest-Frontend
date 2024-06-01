@@ -8,71 +8,27 @@ import { ThemeProvider, useNavigation } from '@react-navigation/native';
 
 export default function Home() {
     const globalStyles = GlobalStyles(); 
-    const navigation = useNavigation();
-
-    
+    const navigation = useNavigation();    
     return (
       <ThemeProvider>
          <ScrollView style={globalStyles.scrollView}>
-
-         <Layout style={globalStyles.container1}>
-
-    <Layout
-      style={globalStyles.layout}
-      level='4'
-    >
-      <Text>
-        <Dividericon/>
-4
-      </Text>
-    </Layout>
-
-    <Layout
-      style={globalStyles.layout}
-      level='3'
-    >
-      <Text>
-        <CardAccessories/>
-3
-      </Text>
-    </Layout>
-
-    <Layout
-      style={styles2.layout}
-      level='2'
-    >
-      <TouchableOpacity style={styles2.button} onPress={() => navigation.navigate('Login')}>
-      <Avatar
-        size='giant'
-        source={require('../../Front-end/assets/Login-icon.png')}
-      />
-      </TouchableOpacity>
-      <Text
-        style={globalStyles.text}
-        category='h6'
-      >
-        Login/Sign-up
-        
-      </Text>
-      
-      
-    
-    </Layout>
-
-    <Layout
-      style={styles2.layout}
-      level='1'
-    >
-      <Text>
-        1
-      </Text>
-      
-    </Layout>
-
-  </Layout>
-  </ScrollView>
-  </ThemeProvider>
-    );
+          <Layout style={globalStyles.container1}>
+             <Layout style={globalStyles.layout} level='4'>      
+               <Dividericon/>      
+             </Layout>
+             <Layout style={globalStyles.layout} level='3'>      
+               <CardAccessories/>      
+             </Layout>
+             <Layout style={styles2.layout} level='2'>
+                 <TouchableOpacity style={styles2.button} onPress={() => navigation.navigate('Login')}>
+                      <Avatar size='giant' source={require('../../Front-end/assets/meditate2.png')}/>
+                      <Text style={globalStyles.text} category='h6'>Login/Sign-up</Text>
+                 </TouchableOpacity>   
+             </Layout>          
+          </Layout>
+         </ScrollView>
+      </ThemeProvider>
+  );
 };
 
 const styles2 = StyleSheet.create({

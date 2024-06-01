@@ -2,16 +2,11 @@ import { GlobalStyles } from "../styles/global";
 import * as React from 'react';
 import { useState, useCallback } from 'react';
 import { View, StyleSheet, ScrollView, TextInput, Alert} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
-import { Button, Layout, Text, Avatar, Card } from '@ui-kitten/components';
+import { Button, Layout, Text, Card } from '@ui-kitten/components';
 import Dividericon from "../components/Divider";
 import CalendarComponent from "../components/Calendar";
 import Choice from "../components/ViewPager";
 import Status from "../components/CheckBox";
-import Note from "../components/Note";
-import Btn from "../components/Button";
-import Form from "../components/Form";
 import Constants from "expo-constants";
 
 
@@ -24,12 +19,10 @@ const API_URL = Constants?.expoConfig?.hostUri
 export default function Meditate({ navigation} ) {
     const globalStyles = GlobalStyles();
     const [formData, setFormdata] = useState({});
-    const [text, setText] = useState('');
+    
 
-    const handleDateChange = useCallback ((selectedDate) => { 
-      // console.log('Updating formData with selected date:', selectedDate);
-
-      //Extract the date part from the datetime string
+    const handleDateChange = useCallback ((selectedDate) => {      
+      //Extract the date part from the datetime string as the format of date in MySQL is Year-Month-Date
       let dateObj = new Date(selectedDate);
       let year = dateObj.getFullYear();
       let month = (dateObj.getMonth() + 1).toString().padStart(2,'0');
@@ -42,18 +35,16 @@ export default function Meditate({ navigation} ) {
       }));
     },[]);
 
-    const handleStatusChange = useCallback ((status) => { 
-      // console.log('Updating formData with status:', status);
+    const handleStatusChange = useCallback ((status) => {       
       setFormdata(prevState => ({
         ...prevState,
-        goal: Number(status ? 1 : 0), //Need to be integer
+        goal: Number(status ? 1 : 0), //Need to be integer to follow MySQL format
       }));
     },[]);
 
      
 
-    async function handleSubmit () {
-      // console.log('Form data to be submitted:', formData);
+    async function handleSubmit () {      
       fetch(`http://${API_URL}/meditate`, {
         method:"POST",
         body: JSON.stringify({
@@ -68,19 +59,23 @@ export default function Meditate({ navigation} ) {
         }
       })
       .then((res) => res.json())
-      .then((res) => {
-        // console.log(res);
+      .then((res) => {        
         if(res.status =='ok'){
           Alert.alert('Thanks. Your post will be reviewed by our master!');
+        }else{      
+          Alert.alert('Oops...Something is wrong.');
         }
-      })
+        })
+        .catch((error)=>{
+          console.error('Error:', error);
+          Alert.alert('We cannot process your post');
+        });   
     }
+   
 
     return (
-
          <ScrollView style={globalStyles.scrollView}>
             <Layout style={globalStyles.container1}>
-
              <Layout style={globalStyles.layout} level='4' >
                 <Text> 
                    <Dividericon/>
@@ -93,30 +88,28 @@ export default function Meditate({ navigation} ) {
              </Layout>
              <Layout>
               <Text category='h5'>Your Name: </Text>
-              <TextInput style={{height: 50}} placeholder="My name is..." placeholderTextColor="#FFF" onChangeText={userID => setFormdata({ ...formData, userID })} defaultValue={text}></TextInput>
-
+              <TextInput style={{height: 50}} placeholder="My name is..." placeholderTextColor="#FFF" onChangeText={userID => setFormdata({ ...formData, userID })} ></TextInput>
              </Layout>
-
              <Layout style={styles.layout} level='2'>      
                    <Text style={globalStyles.title} category='h6'>
                      <Choice  />     
                    </Text>  
              </Layout>
-
              <Layout style={styles.layout} level='1'>
                  <Status onStatusChange={handleStatusChange} />
                  <Text style={globalStyles.text} >
                    Put a tick if you have achieved the goal.        
                  </Text> 
              </Layout>
-
              <Layout> 
                 <View >      
                    <Card>
-                       <TextInput style={{height: 100}} placeholder="What did you experience today?" placeholderTextColor="#FFF" onChangeText={input1 => setFormdata({ ...formData, input1 })} defaultValue={text} />                          
+                    <Text style={globalStyles.text}>Please let the master know about your experience or any questions.</Text>
+                       <TextInput style={{height: 100}} placeholder="What did you experience today?" placeholderTextColor="#FFF" onChangeText={input1 => setFormdata({ ...formData, input1 })} />                          
                    </Card>
                    <Card>
-                       <TextInput style={{height: 100}} placeholder="How can you make it better next time?" placeholderTextColor="#FFF" onChangeText={input2 => setFormdata({ ...formData, input2 })} defaultValue={text} />                        
+                    <Text style={globalStyles.text}>How can you make it better next time?</Text>
+                       <TextInput style={{height: 100}} placeholder="How can you make it better next time?" placeholderTextColor="#FFF" onChangeText={input2 => setFormdata({ ...formData, input2 })} />                        
                    </Card>        
                  </View>       
                 <View style={styles.container}>

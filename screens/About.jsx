@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { ThemeProvider } from '../context/theme';
 import { GlobalStyles } from "../styles/global";
-import { Layout, Text, Avatar, Divider, List, ListItem, Card } from '@ui-kitten/components';
+import { Layout, Text, Divider, List, ListItem, Card } from '@ui-kitten/components';
 import React from "react"
 import { StyleSheet } from "react-native"
 import Dividericon from "../components/Divider";
@@ -20,7 +20,7 @@ const data =  [
   { title: "expo-asset", description: "10.0.6" },
   { title: "expo-constants", description: "16.0.1" },
   { title: "expo-linking", description: "6.3.1" },
-   { title: "expo-splash-screen", description: "0.27.4" },
+  { title: "expo-splash-screen", description: "0.27.4" },
   { title: "expo-status-bar", description: "1.12.1" },
   { title: "expo", description: "51.0.2" },
   { title: "react-native-safe-area-context", description: "4.10.1" },

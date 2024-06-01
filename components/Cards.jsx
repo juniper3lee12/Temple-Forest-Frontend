@@ -86,8 +86,7 @@ export default function CardAccessories () {
 
 function Program({ name, info, source, ...rest }) {
   
-  const globalStyles = GlobalStyles();
-  // console.log(rest);
+  const globalStyles = GlobalStyles();  ;
   return (
     <View>
       <ThemeProvider>

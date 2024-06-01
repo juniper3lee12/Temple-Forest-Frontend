@@ -10,10 +10,9 @@ import MySpace from "./screens/MySpace";
 import Update from "./screens/Update";
 import Home from "./screens/Home";
 import { ThemeProvider } from "./context/theme";
-import { SafeAreaView } from "react-native-safe-area-context";
 import * as eva from "@eva-design/eva";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import { ApplicationProvider, Card, IconRegistry } from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { ThemeContext } from "../Front-end/context/theme-context";
 
 const Drawer = createDrawerNavigator();
@@ -77,42 +76,3 @@ export default function App() {
     </>
   );
 }
-
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { FontAwesome5 } from "@expo/vector-icons";
-
-// import NewsScreen from "./screens/NewScreen";
-// import SettingsScreen from "./screens/SettingScreen";
-
-// import { ThemeProvider } from "./context/theme";
-
-// const Tab = createBottomTabNavigator();
-
-// export default function App() {
-//   return (
-//     <NavigationContainer>
-//       <ThemeProvider>
-//         <Tab.Navigator
-//           screenOptions={({ route }) => {
-//             return {
-//               tabBarIcon: ({ color, size }) => {
-//                 let iconName;
-//                 if (route.name === "News") {
-//                   iconName = "newspaper";
-//                 } else if (route.name === "Settings") {
-//                   iconName = "cog";
-//                 }
-//                 return (
-//                   <FontAwesome5 name={iconName} size={size} color={color} />
-//                 );
-//               },
-//             };
-//           }}
-//         >
-//           <Tab.Screen name="News" component={NewsScreen} />
-//           <Tab.Screen name="Settings" component={SettingsScreen} />
-//         </Tab.Navigator>
-//       </ThemeProvider>
-//     </NavigationContainer>
-//   );
-// }

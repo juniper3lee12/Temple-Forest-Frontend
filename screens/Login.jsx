@@ -1,18 +1,11 @@
-import { View, Button, SafeAreaView, Image, Text, TextInput, StyleSheet, TouchableOpacity,Alert } from 'react-native';
+import { View, Button, Image, Text, TextInput, StyleSheet, TouchableOpacity,Alert } from 'react-native';
 import { GlobalStyles } from "../styles/global";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { useState } from 'react';
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from "expo-constants";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 
 
-
-
-const Stack = createNativeStackNavigator();
-// const API_URL = "http://localhost:3001";
 const API_URL = Constants?.expoConfig?.hostUri
   ? Constants.expoConfig.hostUri.split(`:`).shift().concat(`:3001`)
   : `http://localhost:3001`;
@@ -21,16 +14,9 @@ export default function Login() {
     
   const globalStyles = GlobalStyles();
   const [form, setForm] = useState({ email: '', password: '',  });  
-  const navigation = useNavigation();
-  
+  const navigation = useNavigation();  
 
-  async function handleLogin() {
-    
-    // const emailPassword = {
-    //   email: form.email,
-    //   password: form.password,
-    // };  
-    
+  async function handleLogin() {   
 
     fetch(`http://${API_URL}/users/login`, {
       method: "POST",
@@ -46,12 +32,17 @@ export default function Login() {
     .then((res) => { 
       console.log(res);
       if(res.status == 'ok') {
-      Alert.alert('Thanks! We have logged you in.');
-      AsyncStorage.setItem('token', res.token);
-      AsyncStorage.setItem('isLoggrdIn', JSON.stringify(true));
+      Alert.alert('Thanks! We have logged you in.');            
       navigation.navigate('My Space', {token: res.token});
+    }else{
+      // Error handling
+      Alert.alert('Oops...Something is wrong.');
     }
-    });
+    })
+    .catch((error)=>{
+      console.error('Error:', error);
+      Alert.alert('We cannot process your sign in');
+    });   
     
   }
 
@@ -123,8 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#929292',
     textAlign: 'center',
-  },
-  /** Header */
+  },  
   header: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -136,8 +126,7 @@ const styles = StyleSheet.create({
     height: 150,
     alignSelf: 'center',
     marginBottom: 36,
-  },
-  /** Form */
+  },  
   form: {
     marginBottom: 24,
     paddingHorizontal: 24,
@@ -161,8 +150,7 @@ const styles = StyleSheet.create({
     color: '#222',
     textAlign: 'center',
     letterSpacing: 0.15,
-  },
-  /** Input */
+  },  
   input: {
     marginBottom: 16,
   },
@@ -183,8 +171,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#C9D3DB',
     borderStyle: 'solid',
-  },
-  /** Button */
+  },  
   btn: {
     flexDirection: 'row',
     alignItems: 'center',

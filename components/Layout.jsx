@@ -10,16 +10,3 @@ export function GlobalLayout({ children }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    width: "90%",
-    alignSelf: "center",
-  },
-});

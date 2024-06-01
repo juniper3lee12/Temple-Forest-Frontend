@@ -1,16 +1,10 @@
-import { View, ListRenderItemInfo, StyleSheet,ScrollView } from 'react-native';
+import { View, StyleSheet,ScrollView,Alert } from 'react-native';
 import { ThemeProvider } from '../context/theme';
 import { GlobalStyles } from "../styles/global";
-import { Button, Card, Layout, Text, List } from '@ui-kitten/components';
+import { Button, Card, Text} from '@ui-kitten/components';
 import Constants from "expo-constants";
-import { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation, useRoute} from '@react-navigation/native';
-
-
-
+import { useState, useCallback } from 'react';
+import { useNavigation, useRoute, useFocusEffect} from '@react-navigation/native';
 
 
 const API_URL = Constants?.expoConfig?.hostUri
@@ -22,31 +16,8 @@ export default function MySpace() {
     const [notes, setNotes] = useState([]); 
     const globalStyles = GlobalStyles();
     const navigation = useNavigation();
-    const route = useRoute();    
-    
-    // async function getToken (){
-    //     const authParameters = {
-    //         method:"POST",
-    //         headers: {
-    //             "Content-Type": "application/x-www-form-urlencoded",
-    //         },
-    //         body:JSON.stringify({
-    //             "email":route.params.email,
-    //             "password":route.params.password,
-    //         }),
-    //     };
-
-    //     const res = await fetch(
-    //         `http://${API_URL}/users/login`, authParameters
-    //     );
-    //     const resJson =await res.json();
-    //     console.log(resJson);
-    //     console.log("Response is " + resJson);
-    //     const token = resJson["access_token"];
-    //     return token;
-    // }
-    
-
+    const route = useRoute();       
+   
     const getData = async () => {
         try {
             const response = await fetch(`http://${API_URL}/meditate`);
@@ -54,15 +25,14 @@ export default function MySpace() {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            //console.log('Parsed JSON data:', data);
             setNotes(data.notes);
         } catch (error) {
             console.error('Error:', error);
+            Alert.alert('We cannot receive the information from server');
         }
     };
 
-    const handleDelete = async (id) => {
-        // const token = await getToken();
+    const handleDelete = async (id) => {    
         const authorization = {
             method: "DELETE",
             headers: {
@@ -81,19 +51,19 @@ export default function MySpace() {
 
         }catch (error){
             console.error('Error:', error);
+            Alert.alert('We cannot process your deletion');
         }
     }
     
-    useEffect(() => {
+    // Use FocusEffect hook to call getData() whenever naigate back from Update screen.
+    useFocusEffect(
+        useCallback(() => {
         getData();
-    }, []);
-
-   
+    }, [])
+); 
 
     
-    const Footer = ({note}) => {
-        // const globalStyles = GlobalStyles();
-        // const navigation = useNavigation();
+    const Footer = ({note}) => {       
 
         return (
             <View style={styles.footerContainer}>
@@ -132,8 +102,7 @@ export default function MySpace() {
 
     return (
         
-        <ThemeProvider>
-            
+        <ThemeProvider>            
             <ScrollView style={styles.container}>
                 {notes.map((note) => (
                    <Card key={note.id} style={styles.item} status="basic"  footer={() => <Footer note={note}/>} header={() => <Header note={note} />}  >

@@ -6,16 +6,10 @@ export default function Status ({onStatusChange}) {
 
   const [checked, setChecked] = useState(false);
   useEffect(()=>{
-    // console.log("useEffect triggered");
-    // console.log('Checked status in useEffect :', checked);
-    if(onStatusChange){
-      
+    if(onStatusChange){      
       onStatusChange(checked ? 1 : 0);
     }
-  },[checked,onStatusChange]);
-
-  
-  
+  },[checked,onStatusChange]);   
 
   return (
     <CheckBox 
