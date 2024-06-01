@@ -5,7 +5,7 @@ import { GlobalStyles } from "../styles/global";
 import { Layout, Text, Datepicker } from '@ui-kitten/components';
 
 
-
+// This child component provides a calendar for user to pick a date to record a journal.
 export default function CalendarComponent({onDataChange}) {
     const globalStyles = GlobalStyles();
     const [date, setDate] = useState(new Date());
@@ -15,7 +15,7 @@ export default function CalendarComponent({onDataChange}) {
   }, [date, onDataChange]);    
 
     return ( 
-      <View>
+      <View> 
         <ThemeProvider>
         <Layout style={styles.container} level='1' >
                 <ImageBackground source={require('../../Front-end/assets/dark5.jpg')} resizeMode="stretch" style={styles.image}>

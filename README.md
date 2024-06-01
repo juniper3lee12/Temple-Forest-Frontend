@@ -36,7 +36,7 @@ More than 20 dependencies have been installed in this application. The following
 
 # Architecture
 
-![Picture ](../Front-end/assets/Image.png)
+![Diagram](https://i.ibb.co/swPfFPw/Image.png)
 
 ## Components
 

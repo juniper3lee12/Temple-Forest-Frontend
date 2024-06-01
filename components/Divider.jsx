@@ -3,7 +3,7 @@ import { Avatar, Divider, Text } from '@ui-kitten/components';
 import { GlobalStyles } from "../styles/global";
 import { ThemeProvider } from '../context/theme';
 
-
+//This child component shows a quote from Buddha.
 
 export default function Dividericon (){
  const globalStyles = GlobalStyles(); 

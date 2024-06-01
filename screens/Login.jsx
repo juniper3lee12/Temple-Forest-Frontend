@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Constants from "expo-constants";
 import { useNavigation} from '@react-navigation/native';
 
-
+// Express erver and expo app need to be in the same port localhost:3001
 const API_URL = Constants?.expoConfig?.hostUri
   ? Constants.expoConfig.hostUri.split(`:`).shift().concat(`:3001`)
   : `http://localhost:3001`;
@@ -16,7 +16,9 @@ export default function Login() {
   const [form, setForm] = useState({ email: '', password: '',  });  
   const navigation = useNavigation();  
 
-  async function handleLogin() {   
+  async function handleLogin() {  
+    
+    // POST request gets email and password entered by the user and send them to the server
 
     fetch(`http://${API_URL}/users/login`, {
       method: "POST",
@@ -33,15 +35,14 @@ export default function Login() {
       console.log(res);
       if(res.status == 'ok') {
       Alert.alert('Thanks! We have logged you in.');            
-      navigation.navigate('My Space', {token: res.token});
-    }else{
-      // Error handling
+      navigation.navigate('My Space', {token: res.token}); // After login sucessful navigate to MySpace screen and pass token to MySpace 
+    }else{      
       Alert.alert('Oops...Something is wrong.');
     }
     })
-    .catch((error)=>{
+    .catch((error)=>{ 
       console.error('Error:', error);
-      Alert.alert('We cannot process your sign in');
+      Alert.alert('We cannot process your sign in'); // Error handling
     });   
     
   }
@@ -62,7 +63,7 @@ export default function Login() {
                   autoCorrect={false}
                   clearButtonMode="while-editing"
                   keyboardType="email-address"
-                  onChangeText={email => setForm({ ...form, email })}
+                  onChangeText={email => setForm({ ...form, email })} // email
                   placeholder="john@example.com"
                   placeholderTextColor="#6b7280"
                   style={styles.inputControl}
@@ -73,7 +74,7 @@ export default function Login() {
             <TextInput
               autoCorrect={false}
               clearButtonMode="while-editing"
-              onChangeText={password => setForm({ ...form, password })}
+              onChangeText={password => setForm({ ...form, password })}  // password
               placeholder="********"
               placeholderTextColor="#6b7280"
               style={styles.inputControl}
@@ -82,6 +83,7 @@ export default function Login() {
         </View>
       </View>
       <View style={styles.formAction}>
+        {/* Call handleLogin here  */}
         <TouchableOpacity onPress={()=>handleLogin()}>    
          <View style={styles.btn}>
           <Text style={styles.btnText}>Sign in</Text>

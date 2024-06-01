@@ -17,8 +17,8 @@ const API_URL = Constants?.expoConfig?.hostUri
 
 
 export default function Meditate({ navigation} ) {
-    const globalStyles = GlobalStyles();
-    const [formData, setFormdata] = useState({});
+    const globalStyles = GlobalStyles(); // Font theme
+    const [formData, setFormdata] = useState({}); 
     
 
     const handleDateChange = useCallback ((selectedDate) => {      
@@ -43,7 +43,7 @@ export default function Meditate({ navigation} ) {
     },[]);
 
      
-
+    //  Post a note
     async function handleSubmit () {      
       fetch(`http://${API_URL}/meditate`, {
         method:"POST",
@@ -74,8 +74,8 @@ export default function Meditate({ navigation} ) {
    
 
     return (
-         <ScrollView style={globalStyles.scrollView}>
-            <Layout style={globalStyles.container1}>
+         <ScrollView>
+            <Layout >
              <Layout style={globalStyles.layout} level='4' >
                 <Text> 
                    <Dividericon/>
@@ -83,19 +83,22 @@ export default function Meditate({ navigation} ) {
              </Layout>
              <Layout style={styles.layout} level='3' >
                 <Text>
-                   <CalendarComponent onDataChange={handleDateChange}/>
+                  {/* Date from calendar component */}
+                   <CalendarComponent onDataChange={handleDateChange}/>  
                  </Text>
              </Layout>
              <Layout>
+              {/* Name will be used as userID in the database  */}
               <Text category='h5'>Your Name: </Text>
-              <TextInput style={{height: 50}} placeholder="My name is..." placeholderTextColor="#FFF" onChangeText={userID => setFormdata({ ...formData, userID })} ></TextInput>
+              <TextInput style={{height: 50}} placeholder="My name is..." placeholderTextColor="#FFF" onChangeText={userID => setFormdata({ ...formData, userID })} ></TextInput>  
              </Layout>
              <Layout style={styles.layout} level='2'>      
-                   <Text style={globalStyles.title} category='h6'>
+                   <Text category='h6'>
                      <Choice  />     
                    </Text>  
              </Layout>
              <Layout style={styles.layout} level='1'>
+              {/* Status will be used as goal in the database  */}
                  <Status onStatusChange={handleStatusChange} />
                  <Text style={globalStyles.text} >
                    Put a tick if you have achieved the goal.        
@@ -104,15 +107,17 @@ export default function Meditate({ navigation} ) {
              <Layout> 
                 <View >      
                    <Card>
+                    {/* input1 and input2 indicate their experiences and how they can make the meditation better next time  */}
                     <Text style={globalStyles.text}>Please let the master know about your experience or any questions.</Text>
                        <TextInput style={{height: 100}} placeholder="What did you experience today?" placeholderTextColor="#FFF" onChangeText={input1 => setFormdata({ ...formData, input1 })} />                          
                    </Card>
                    <Card>
-                    <Text style={globalStyles.text}>How can you make it better next time?</Text>
+                    <Text style={globalStyles.text}>How can you make it better next time?</Text> 
                        <TextInput style={{height: 100}} placeholder="How can you make it better next time?" placeholderTextColor="#FFF" onChangeText={input2 => setFormdata({ ...formData, input2 })} />                        
                    </Card>        
                  </View>       
                 <View style={styles.container}>
+                    {/* call handleSubmit here*/}
                 <Button title="Submit" onPress={handleSubmit} style={styles.button} size="small" status="success">Post experience</Button>                    
                 <Button title="Back" style={styles.button} size="small" status="success" onPress={() => {navigation.goBack();}} >Back</Button>    
                 </View>  

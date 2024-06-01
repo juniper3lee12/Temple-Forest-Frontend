@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ThemeProvider } from '../context/theme';
 
 
-
+// The 2 meditation programs and its information.
 const programs = [
   {
     key: "1",
@@ -27,10 +27,10 @@ const programs = [
 ];
 
 const Header = (props) => {
-  const globalStyles = GlobalStyles();
+  const globalStyles = GlobalStyles(); // Control font size
   return (
     <View style={globalStyles.container2}>
-      <ThemeProvider>
+      <ThemeProvider>   
       <TouchableOpacity>
       <Image
       style={styles1.stretch}

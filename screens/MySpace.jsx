@@ -16,7 +16,7 @@ export default function MySpace() {
     const [notes, setNotes] = useState([]); 
     const globalStyles = GlobalStyles();
     const navigation = useNavigation();
-    const route = useRoute();       
+    const route = useRoute();       // Give access to token from login screen
    
     const getData = async () => {
         try {
@@ -37,7 +37,7 @@ export default function MySpace() {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer " + route.params.token,
+                Authorization: "Bearer " + route.params.token,  // Send Token with headers to request permission to delete note
             },
         };
         try{
@@ -69,7 +69,7 @@ export default function MySpace() {
             <View style={styles.footerContainer}>
                 <Button 
                 title= "Edit Note"
-                onPress={() => navigation.navigate('Update', {id: note.id, token: route.params.token})}                
+                onPress={() => navigation.navigate('Update', {id: note.id, token: route.params.token})}   // Navigate to Update screen and let it access to the token and note id           
                 style={styles.footerControl}
                 size='small'
                 status='success'>
@@ -77,7 +77,7 @@ export default function MySpace() {
                 </Button>
                 <Button 
                 title= "Delete Note"
-                onPress={()=>handleDelete(note.id)}
+                onPress={()=>handleDelete(note.id)}  // Call handleDelete function to delete a note
                 style={styles.footerControl}
                 size='small'
                 status='primary'>
@@ -104,6 +104,7 @@ export default function MySpace() {
         
         <ThemeProvider>            
             <ScrollView style={styles.container}>
+                {/* Return all the notes from data base */}
                 {notes.map((note) => (
                    <Card key={note.id} style={styles.item} status="basic"  footer={() => <Footer note={note}/>} header={() => <Header note={note} />}  >
                        <Text style={globalStyles.text}>Date: {note.date}</Text>

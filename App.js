@@ -18,6 +18,7 @@ import { ThemeContext } from "../Front-end/context/theme-context";
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  // background color theme
   const [theme, setTheme] = React.useState("light");
 
   const toggleTheme = () => {
@@ -32,6 +33,7 @@ export default function App() {
         <ApplicationProvider {...eva} theme={eva[theme]}>
           <NavigationContainer>
             <ThemeProvider>
+              {/* Always visit HomeScreen first */}
               <Drawer.Navigator initialRouteName="Home">
                 <Drawer.Screen
                   name="Home"

@@ -7,12 +7,13 @@ import { ThemeProvider, useNavigation } from '@react-navigation/native';
 
 
 export default function Home() {
-    const globalStyles = GlobalStyles(); 
+    const globalStyles = GlobalStyles();  // Apply font size theme
     const navigation = useNavigation();    
     return (
-      <ThemeProvider>
-         <ScrollView style={globalStyles.scrollView}>
-          <Layout style={globalStyles.container1}>
+      // Apply font size theme using ThemeProvider from theme.js
+      <ThemeProvider> 
+         <ScrollView>
+          <Layout>
              <Layout style={globalStyles.layout} level='4'>      
                <Dividericon/>      
              </Layout>
@@ -20,7 +21,7 @@ export default function Home() {
                <CardAccessories/>      
              </Layout>
              <Layout style={styles2.layout} level='2'>
-                 <TouchableOpacity style={styles2.button} onPress={() => navigation.navigate('Login')}>
+                 <TouchableOpacity style={styles2.button} onPress={() => navigation.navigate('Login')}> 
                       <Avatar size='giant' source={require('../../Front-end/assets/meditate2.png')}/>
                       <Text style={globalStyles.text} category='h6'>Login/Sign-up</Text>
                  </TouchableOpacity>   
@@ -29,7 +30,8 @@ export default function Home() {
          </ScrollView>
       </ThemeProvider>
   );
-};
+}; // Use ui-kitten layout to handle layout of the screen
+   // Use components from components directory (e.g., dividericon and cards)
 
 const styles2 = StyleSheet.create({
   container: {

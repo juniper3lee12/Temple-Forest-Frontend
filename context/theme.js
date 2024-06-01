@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const ThemeContext = createContext();
 
+// Font size theme
 export const useTheme = () => useContext(ThemeContext);
 
 export function ThemeProvider({ children }) {

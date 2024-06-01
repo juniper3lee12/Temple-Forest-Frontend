@@ -4,6 +4,7 @@ import { Layout, Text, ViewPager } from '@ui-kitten/components';
 import { ThemeProvider } from '../context/theme';
 import { GlobalStyles } from "../styles/global";
 
+//This child component provide meditation programs. ViewPager can swipe left and right.
 export default function Choice() {
 
   const [selectedIndex, setSelectedIndex] = React.useState(0);
