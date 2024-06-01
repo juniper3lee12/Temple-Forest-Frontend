@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { StyleSheet, View, TextInput, Alert } from "react-native"
 import { Card, Button } from "@ui-kitten/components"
 import { useNavigation, useRoute} from '@react-navigation/native';
 import Constants from "expo-constants"; 
+import {getData} from "../lib/backend";
 
 
 const API_URL = Constants?.expoConfig?.hostUri
@@ -13,7 +14,9 @@ export default function Update() {
   
   const route = useRoute();
   const [form, setForm] = useState({ message1: '', message2:  ''});   
-  const navigation = useNavigation();  
+  const navigation = useNavigation();    
+  const [note, setNotes] = useState("");
+    
 
   const handleUpdate = async (id) => {        
         const authorization = {
@@ -37,13 +40,22 @@ export default function Update() {
         }
   }
 
+  useEffect(() => {
+    getData((data)=> {
+      setNotes((data.input1));
+      setForm((prevForm) => ({...prevForm, message1: data.input1}));
+    });
+       
+  }, []);
+
+
   return (
     <View>      
-        <Card>
-            <TextInput style={{height: 200}} placeholder="Please revise experience here." onChangeText={message1 => setForm({ ...form, message1 })} />            
+        <Card>            
+            <TextInput style={{height: 250}} placeholder="Please revise experience here." onChangeText={message1 => setForm({ ...form, message1 })} defaultValue={note}/>            
         </Card>
         <Card>
-            <TextInput style={{height: 200}} placeholder="Please type your comment here." onChangeText={message2 => setForm({ ...form, message2 })} />            
+            <TextInput style={{height: 250}} placeholder="Please type your comment here." onChangeText={message2 => setForm({ ...form, message2 })} />            
             <Button style={styles.button} status='warning' onPress={()=>handleUpdate(route.params.id)} >
                Post your Comment
             </Button>
