@@ -1,10 +1,8 @@
 # Welcome
 
-This application aims to help facilitate members who want to integrate meditation into their daily lives. The meditation centre may find this application useful for them as it can help improve communication with members of the centre. Users will be learning about different types of meditation practices, record their activities, and receive feedback from masters. This will help improve their meditation skills by allowing them to communicate with and receive support from experienced meditation masters.
-
 # How to contribute
 
-Help us by cloning this repository from GitHub, use it, and communicate with masters. If any feature needs improvement, please do not hesitate to post it in your meditation journal. This is how we can receive your feedback.
+Help us by cloning this repository from GitHub, and communicate with us. If any feature needs improvement, please do not hesitate to let us know. This is how we can receive your feedback.
 
 # Features
 
