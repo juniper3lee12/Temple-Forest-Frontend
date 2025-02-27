@@ -30,7 +30,7 @@ This application aims to help temples give feedback to their students in meditat
 ![Diagram](https://i.ibb.co/swPfFPw/Image.png)
 
 # Components
-*** This repository contains only the client-side components.
+*** This repository contains only the client-side component.
 
 ### Client-side Component
 
